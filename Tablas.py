@@ -1,7 +1,7 @@
-from sqlalchemy import MetaData, Column, Integer, String, Date, DateTime, ForeignKey, func, extract, case, and_ , or_, select,exists
+from sqlalchemy import MetaData, Column, Integer, String, Date, DateTime, ForeignKey, extract, case, and_
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker, column_property
-from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
+from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.ext.hybrid import hybrid_property
 from Gestores_Personas import MixinAsDict, MixinGetByFirstName, MixinGetByLastName
 from Configuración_BD import engine
 import datetime

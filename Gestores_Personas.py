@@ -1,7 +1,6 @@
-from sqlalchemy import MetaData, Column, Integer, String, Date, DateTime, func, extract, case, and_ , or_, select
+from sqlalchemy import Column, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import hashlib
 from Configuración_BD import engine
 
 
