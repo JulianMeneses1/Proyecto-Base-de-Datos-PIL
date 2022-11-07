@@ -18,7 +18,7 @@ class Facultades(Base):
     __tablename__ = "facultades"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(45))
+    nombre = Column (String(80))
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -31,7 +31,7 @@ class Campus(Base):
     __tablename__ = "campus"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(45))
+    nombre = Column (String(80))
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -44,7 +44,7 @@ class Ramas(Base):
     __tablename__ = "ramas"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(45))
+    nombre = Column (String(80))
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -217,7 +217,7 @@ class Carreras(Base):
     __tablename__ = "carreras"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(50))
+    nombre = Column (String(80))
     fecha_nacimiento = Column (Date)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
