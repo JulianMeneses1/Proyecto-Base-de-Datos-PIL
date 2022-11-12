@@ -18,7 +18,7 @@ class Facultades(Base):
     __tablename__ = "facultades"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(45))
+    nombre = Column (String(80))
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -31,7 +31,7 @@ class Campus(Base):
     __tablename__ = "campus"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(45))
+    nombre = Column (String(80))
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -44,7 +44,7 @@ class Ramas(Base):
     __tablename__ = "ramas"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(45))
+    nombre = Column (String(80))
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -65,27 +65,67 @@ class Genero(Base):
     alumnos = relationship("Alumnos",back_populates="genero")
 
     def __init__(self, tipo):
-        self.tipo = tipo   
-         
-        
+        self.tipo = tipo        
+
+class Provincias(Base):
+    __tablename__ = "provincias"
+
+    id = Column (Integer, primary_key=True)
+    nombre = Column (String(80))
+    fecha_insercion = Column (DateTime,default=datetime.datetime.now)
+    fecha_actualizacion = Column (DateTime)
+    estado = Column (String(20), default="A")
+    ubicacion = relationship("Ubicacion",back_populates="provincias")
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+class Ciudades(Base):
+    __tablename__ = "ciudades"
+
+    id = Column (Integer, primary_key=True)
+    nombre = Column (String(80))
+    fecha_insercion = Column (DateTime,default=datetime.datetime.now)
+    fecha_actualizacion = Column (DateTime)
+    estado = Column (String(20), default="A")
+    ubicacion = relationship("Ubicacion",back_populates="ciudades")
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+class Municipios(Base):
+    __tablename__ = "municipios"
+
+    id = Column (Integer, primary_key=True)
+    nombre = Column (String(80))
+    fecha_insercion = Column (DateTime,default=datetime.datetime.now)
+    fecha_actualizacion = Column (DateTime)
+    estado = Column (String(20), default="A")
+    ubicacion = relationship("Ubicacion",back_populates="municipios")
+
+    def __init__(self, nombre):
+        self.nombre = nombre
 
 class Ubicacion(Base):
     __tablename__ = 'ubicacion'
 
-    id = Column (Integer, primary_key=True)
-    ciudad = Column (String(50))
-    municipio = Column (String(50))
-    provincia = Column (String(50))
+    id = Column (Integer, primary_key=True)    
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
+    ciudades_id = Column (ForeignKey("ciudades.id"))
+    municipios_id = Column (ForeignKey("municipios.id"))
+    provincias_id = Column (ForeignKey("provincias.id"))
+    ciudades = relationship("Ciudades",back_populates="ubicacion")
+    municipios = relationship("Municipios",back_populates="ubicacion")
+    provincias = relationship("Provincias",back_populates="ubicacion")
     alumnos = relationship("Alumnos",back_populates="ubicacion")
     profesores = relationship("Profesores",back_populates="ubicacion")
 
-    def __init__(self, ciudad, municipio, provincia):
-        self.ciudad = ciudad
-        self.municipio = municipio
-        self.provincia = provincia
+    def __init__(self, ciudades_id, municipios_id, provincias_id):
+        self.ciudades_id = ciudades_id
+        self.municipios_id = municipios_id
+        self.provincias_id = provincias_id
 
 
 class Profesores(MixinAsDict,MixinGetByFirstName,MixinGetByLastName,Base):
@@ -217,8 +257,7 @@ class Carreras(Base):
     __tablename__ = "carreras"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(50))
-    fecha_nacimiento = Column (Date)
+    nombre = Column (String(80))    
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column(String(20), default="A")
