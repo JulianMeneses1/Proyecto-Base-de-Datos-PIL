@@ -2,7 +2,7 @@ from sqlalchemy import MetaData, Column, Integer, String, Date, DateTime, Foreig
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.ext.hybrid import hybrid_property
-from Gestores_Personas import MixinAsDict, MixinGetByFirstName, MixinGetByLastName
+from Gestores_personas import MixinAsDict, MixinGetByFirstName, MixinGetByLastName
 from Configuración_BD import engine
 import datetime
 
