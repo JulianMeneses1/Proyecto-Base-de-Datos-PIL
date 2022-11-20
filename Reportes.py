@@ -1,7 +1,7 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import func, between
 from Configuración_BD import engine
-from Tablas import Profesores,Alumnos,Carreras,Profesores_Carreras,Alumnos_Carreras, Facultades,Ramas,Campus,Provincias,Ciudades,Municipios,Ubicacion,Genero
+from Tablas import Profesores,Alumnos,Carreras,Profesores_Carreras,Alumnos_Carreras, Facultades,Ramas,Campus,Paises,Provincias,Ciudades,Municipios,Ubicacion,Genero
 
 db=engine.connect()
 

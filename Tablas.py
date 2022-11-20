@@ -13,7 +13,6 @@ meta = MetaData()
 Session = sessionmaker(bind = engine)
 session = Session() # Se abre la sesión
 
-
 class Facultades(Base):    
     __tablename__ = "facultades"
 
@@ -106,6 +105,19 @@ class Municipios(Base):
     def __init__(self, nombre):
         self.nombre = nombre
 
+class Paises(Base):
+    __tablename__ = "paises"
+
+    id = Column (Integer, primary_key=True)
+    nombre = Column (String(80))
+    fecha_insercion = Column (DateTime,default=datetime.datetime.now)
+    fecha_actualizacion = Column (DateTime)
+    estado = Column (String(20), default="A")
+    ubicacion = relationship("Ubicacion",back_populates="paises")
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+
 class Ubicacion(Base):
     __tablename__ = 'ubicacion'
 
@@ -116,16 +128,19 @@ class Ubicacion(Base):
     ciudades_id = Column (ForeignKey("ciudades.id"))
     municipios_id = Column (ForeignKey("municipios.id"))
     provincias_id = Column (ForeignKey("provincias.id"))
+    paises_id = Column (ForeignKey("paises.id"))
+    paises = relationship("Paises",back_populates="ubicacion")
     ciudades = relationship("Ciudades",back_populates="ubicacion")
     municipios = relationship("Municipios",back_populates="ubicacion")
     provincias = relationship("Provincias",back_populates="ubicacion")
     alumnos = relationship("Alumnos",back_populates="ubicacion")
     profesores = relationship("Profesores",back_populates="ubicacion")
 
-    def __init__(self, ciudades_id, municipios_id, provincias_id):
+    def __init__(self, ciudades_id, municipios_id, provincias_id,paises_id):
         self.ciudades_id = ciudades_id
         self.municipios_id = municipios_id
         self.provincias_id = provincias_id
+        self.paises_id = paises_id
 
 
 class Profesores(MixinAsDict,MixinGetByFirstName,MixinGetByLastName,Base):
