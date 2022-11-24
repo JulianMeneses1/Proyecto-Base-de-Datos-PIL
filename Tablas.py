@@ -17,7 +17,7 @@ class Facultades(Base):
     __tablename__ = "facultades"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(80))
+    nombre = Column (String(80), unique=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -30,7 +30,7 @@ class Campus(Base):
     __tablename__ = "campus"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(80))
+    nombre = Column (String(80), unique=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -43,7 +43,7 @@ class Ramas(Base):
     __tablename__ = "ramas"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(80))
+    nombre = Column (String(80), unique=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -56,7 +56,7 @@ class Genero(Base):
     __tablename__ = "genero"
 
     id = Column ('id', Integer, primary_key=True)
-    tipo = Column ('tipo', String(30))
+    tipo = Column ('tipo', String(30), unique=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -70,7 +70,7 @@ class Provincias(Base):
     __tablename__ = "provincias"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(80))
+    nombre = Column (String(80), unique=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -83,7 +83,7 @@ class Ciudades(Base):
     __tablename__ = "ciudades"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(80))
+    nombre = Column (String(80), unique=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -96,7 +96,7 @@ class Municipios(Base):
     __tablename__ = "municipios"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(80))
+    nombre = Column (String(80), unique=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -109,7 +109,7 @@ class Paises(Base):
     __tablename__ = "paises"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(80))
+    nombre = Column (String(80), unique=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column (String(20), default="A")
@@ -272,7 +272,7 @@ class Carreras(Base):
     __tablename__ = "carreras"
 
     id = Column (Integer, primary_key=True)
-    nombre = Column (String(80))    
+    nombre = Column (String(80), unique=True)    
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
     fecha_actualizacion = Column (DateTime)
     estado = Column(String(20), default="A")
