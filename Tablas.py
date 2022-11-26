@@ -1,4 +1,4 @@
-from sqlalchemy import MetaData, Column, Integer, String, Date, DateTime, ForeignKey, extract, case, and_
+from sqlalchemy import MetaData, Column, Integer, String, Date, DateTime, ForeignKey, extract, case, and_, UniqueConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -121,6 +121,7 @@ class Paises(Base):
 
 class Ubicacion(Base):
     __tablename__ = 'ubicacion'
+    __table_args__ = (UniqueConstraint('ciudades_id','municipios_id','provincias_id','paises_id', name="uidx_ubicacion_unica"), ) # el __table_args__ es para establecer que la combinación de los id de las claves foráneas de cada registro debe ser única, no se puede repetir
 
     id = Column (Integer, primary_key=True)    
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
@@ -270,7 +271,7 @@ class Alumnos(MixinAsDict,MixinGetByFirstName,MixinGetByLastName,Base):
 			)
 
 class Carreras(Base):
-    __tablename__ = "carreras"
+    __tablename__ = "carreras"    
 
     id = Column (Integer, primary_key=True)
     nombre = Column (String(80), unique=True)    
@@ -295,6 +296,7 @@ class Carreras(Base):
 
 class Profesores_Carreras(Base):
     __tablename__ = "profesores_carreras"
+    __table_args__ = (UniqueConstraint('profesor_id','carrera_id', name="uidx_inscripcion_unica"), )
 
     id = Column (Integer, primary_key=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
@@ -310,6 +312,7 @@ class Profesores_Carreras(Base):
 
 class Alumnos_Carreras(Base):
     __tablename__ = "alumnos_carreras"
+    __table_args__ = (UniqueConstraint('alumno_id','carrera_id', name="uidx_inscripcion_unica"), )
 
     id = Column (Integer, primary_key=True)
     fecha_insercion = Column (DateTime,default=datetime.datetime.now)
