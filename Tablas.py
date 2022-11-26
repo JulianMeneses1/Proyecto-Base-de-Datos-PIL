@@ -1,17 +1,18 @@
 from sqlalchemy import MetaData, Column, Integer, String, Date, DateTime, ForeignKey, extract, case, and_
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 from Gestores_personas import MixinAsDict, MixinGetByFirstName, MixinGetByLastName
-from Configuración_BD import engine
+from Configuración_BD import crear_conexion, obtener_sesion
 import datetime
 
+base_mysql="pil_trabajo_practico" # nombre de la base de datos
 
-engine.connect() # Conexión a la base de datos
+engine_mysql = crear_conexion("mysql","root","Contadores2","127.0.0.1:4000",base_mysql) # Conexión a la base de datos
 Base = declarative_base()
 meta = MetaData()
-Session = sessionmaker(bind = engine)
-session = Session() # Se abre la sesión
+
+session_mysql = obtener_sesion(engine_mysql) # abro la sesión en la conexión establecida
 
 class Facultades(Base):    
     __tablename__ = "facultades"
@@ -322,7 +323,7 @@ class Alumnos_Carreras(Base):
         self.carrera_id = carrera_id  
 
 
-Base.metadata.create_all(engine) #creación de las tablas
+Base.metadata.create_all(engine_mysql) # creación de las tablas
 
 
 
