@@ -1,10 +1,9 @@
 from sqlalchemy import Column, String
-from Configuración_BD import crear_conexion, obtener_sesion
+from Configuracion_BD import crear_conexion, obtener_sesion
 
 base_mysql="pil_trabajo_practico" # nombre de la base de datos
 
 engine_mysql = crear_conexion("mysql","root","Contadores2","127.0.0.1:4000",base_mysql) # Conexión a la base de datos
-
 
 session_mysql = obtener_sesion(engine_mysql) # abro la sesión en la conexión establecida
 
