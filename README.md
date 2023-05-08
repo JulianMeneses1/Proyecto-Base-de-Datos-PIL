@@ -1,5 +1,5 @@
 # Proyecto Base de Datos PIL
-Repositorio creado para realizar el trabajo solicitado en el marco de la capacitación del programa de inserción laboral (PIL) en nuevas tecnologías. Consigna del trabajosd:
+Repositorio creado para realizar el trabajo solicitado en el marco de la capacitación del programa de inserción laboral (PIL) en nuevas tecnologías. Consigna del trabajo:
 
 Una entidad educativa se encuentra en un proceso de migración de sistemas, cuyo objetivo busca lograr la limpieza y estandarización de sus datos.
 Para ello provee fuentes de datos contenidos en diferentes archivos en formato csv. Dicha entidad contrata nuestros servicios para crear una aplicación que permita la importación de los datos a una base de datos, con las siguientes consideraciones:
